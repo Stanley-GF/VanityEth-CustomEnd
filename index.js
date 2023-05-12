@@ -25,6 +25,9 @@ const argv = Yargs(process.argv.slice(2))
   .alias("i", "input")
   .string("i")
   .describe("i", "input hex string")
+  .alias("e", "ending")
+  .string("e")
+  .describe("e", "ending string")
   .alias("c", "checksum")
   .boolean("c")
   .describe("c", "check against the checksum address")
@@ -43,6 +46,7 @@ const argv = Yargs(process.argv.slice(2))
 if (cluster.isMaster) {
   const args = {
     input: argv.input ? argv.input : "",
+    ending: argv.ending ? argv.ending : "",
     isChecksum: argv.checksum ? true : false,
     numWallets: argv.count ? argv.count : 1,
     isContract: argv.contract ? true : false,
@@ -73,6 +77,7 @@ if (cluster.isMaster) {
   for (let i = 0; i < numCPUs; i++) {
     const worker_env = {
       input: args.input,
+      ending: args.ending,
       isChecksum: args.isChecksum,
       isContract: args.isContract,
     };
@@ -103,6 +108,7 @@ if (cluster.isMaster) {
       process.send({
         account: VanityEth.getVanityWallet(
           worker_env.input,
+          worker_env.ending,
           worker_env.isChecksum == "true",
           worker_env.isContract == "true",
           function () {
