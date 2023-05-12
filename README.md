@@ -9,11 +9,11 @@ Nodejs based tool to generate vanity ethereum addresses
   - vanity contract address
   - log to file
   - checksum based vanity address
+  - Support Beginning & Ending
 
 ### Installation
 ```sh
-$ npm install -g vanity-eth
-$ vanityeth -i deadbeef
+i'm too lazy to upload it on npmjs just take the files and edit them in C:\Program Files\nodejs\node_modules\vanity-eth\libs
 ```
 ### Examples
 
@@ -46,6 +46,11 @@ $ vanityeth -n 10 -l
 help me
 ```sh
 $ vanityeth -h
+```
+
+Generate wallet that starts with abc and ends with xyz
+```sh
+$ vanityeth -i abc -e xyz
 ```
 ### Docker usage
 
